@@ -1,3 +1,10 @@
+"""A simple class to represent the current state of the parsing.
+
+The LemurState saves the source code of the program, the current position, the
+current row and column, the lexemes generated so far, and whether the source 
+code is lexically valid.
+"""
+
 
 class LemurState:
   """Contains the relevant information for lexical parsing.

@@ -1,3 +1,12 @@
+"""This is the core of the lexical parser.
+
+It implements the parse function, that receives a string with the source code of
+the program and generates a list of lexemes.
+It also implements a bunch of small parsers, each parser takes care of parsing a
+kind of token (e.g. numbers, names, comments) and the parse function just makes
+sure everything works.
+"""
+
 import string
 
 import lemur_lexeme
@@ -142,14 +151,17 @@ def _character(state):
   start = state.copy()
   if state.program[state.i] == '\\':
     if state.i + 2 >= len(state.program) or state.program[state.i+2] != '\'':
-      return LemurState(valid=False)
-    state.i += 2
-    state.col += 2
+      state.valid = False
+      return state
+    state.i += 1
+    state.col += 1
   elif state.i + 1 >= len(state.program) or state.program[state.i+1] != '\'':
-    return LemurState(valid=False)
+    state.valid = False
+    return state
+  state.i += 1
   state.lexemes.append(lemur_lexeme.character(start, state))
   state.i += 1
-  state.col += 1
+  state.col += 2
   return state
 
 

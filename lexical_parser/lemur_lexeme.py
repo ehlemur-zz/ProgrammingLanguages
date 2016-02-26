@@ -1,3 +1,10 @@
+"""Some functions to transform the LemurState into string lexemes.
+
+These functions take one or two LemurStates and generate the string
+representation of the lexemes. The first state usually contains the starting 
+position and the second state the ending one.
+"""
+
 import lemur_util
 
 

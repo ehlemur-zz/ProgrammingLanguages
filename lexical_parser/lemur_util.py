@@ -1,3 +1,6 @@
+"""Contains some constants relevant to the language and some utility functions.
+"""
+
 RESERVED_WORDS = (
   'funcion_principal booleano caracter entero real cadena fin_principal leer '
   'imprimir si si_no entonces fin_si mientras hacer fin_mientras para '

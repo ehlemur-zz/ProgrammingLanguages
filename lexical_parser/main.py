@@ -1,3 +1,7 @@
+"""Reads the source code from stdin and outputs the list of lexemes.
+"""
+
+
 import sys
 import lemur_parser
 

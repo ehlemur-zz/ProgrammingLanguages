@@ -1,8 +1,26 @@
 # -*- coding: latin-1 -*-
 
+"""lemur_parser tests.
+"""
+
+
 import lemur_parser
 
 tests = [
+""""Hola \\" mundo!"
+""
+'A'
+3.2
+-100
+some_name
+fin_principal
+entero
+/* multiline
+   comment */ aaa // single-line comment
++
+-
+#""",
+
 """funcion_principal
 
     imprimir (3+5);
@@ -33,6 +51,19 @@ fin_funcion"""]
 
 
 expected_outputs = [
+"""<tk_cadena,Hola \\" mundo!,1,2>
+<tk_cadena,,1,19>
+<tk_caracter,A,1,22>
+<tk_real,3.2,2,1>
+<tk_entero,-100,3,1>
+<id,some_name,4,1>
+<fin_principal,5,1>
+<entero,6,1>
+<id,aaa,8,15>
+<tk_mas,9,1>
+<tk_menos,10,1>
+>>> Error lexico (linea: 11, posicion: 1)""",
+
 """<funcion_principal,1,1>
 <imprimir,3,5>
 <tk_par_izq,3,14>
@@ -95,15 +126,15 @@ expected_outputs = [
 >>> Error lexico (linea: 5, posicion: 18)"""]
 
 
-for i, (t, e) in enumerate(zip(tests, expected_outputs)):
+for i, (test, expected_output) in enumerate(zip(tests, expected_outputs)):
   print "Test #%d" % (i + 1)
-  r = '\n'.join(lemur_parser.parse(t).lexemes)
-  if r != e:
+  result = '\n'.join(lemur_parser.parse(test).lexemes)
+  if result != expected_output:
     print " Failed"
     print "  Found"
-    print r
+    print result
     print "  Expected"
-    print e
+    print expected_output
     break
   else:
     print " OK"

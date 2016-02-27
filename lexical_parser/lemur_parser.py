@@ -100,7 +100,6 @@ def _number_cond(state):
   next_two = lemur_util.take_two(state)
   is_negative = (next_two[0] == '-' and next_two[1] in string.digits)
   return state.program[state.i] in string.digits or is_negative
-         
 
 def _number(state):
   start = state.copy()
